@@ -4,6 +4,8 @@
 ![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=powershell&logoColor=white)
 ![AMD Radeon](https://img.shields.io/badge/AMD_Radeon-RDNA_Architecture-ED1C24?style=for-the-badge&logo=amd&logoColor=white)
 
+> **Live Interactive PCIe Bandwidth & ReBAR Frame-Time Profiler (GitHub Pages):** [https://hipolitopeedro.github.io/pcie-rebar-frametime-profiler/](https://hipolitopeedro.github.io/pcie-rebar-frametime-profiler/)
+>
 > **English:** Low-level GPU/PCIe subsystem diagnostics and frame-time consistency profiler designed for **AMD Ryzen (AM4 / AM5) + AMD Radeon (RDNA 2 / RDNA 3 / RDNA 4)** platforms. Audits **Resizable BAR / Smart Access Memory (`Large Memory Range`)**, **MSI (Message Signaled Interrupts)** mode, and **HAGS**, and processes PresentMon/CapFrameX logs to compute **1% Low / 0.1% Low FPS**, **99th percentile frame times (`ms`)**, and **frame-to-frame micro-stutter variance**.
 >
 > **Português:** Ferramenta de diagnóstico de barramento GPU/PCIe e análise de consistência de *frame-time* projetada para plataformas **AMD Ryzen (AM4 / AM5) + AMD Radeon (RDNA 2 / RDNA 3 / RDNA 4)**. Audita alocação de **Resizable BAR / Smart Access Memory (`Large Memory Range`)**, interrupções **MSI (Message Signaled Interrupts)** e **HAGS**, e processa logs do PresentMon/CapFrameX para calcular **1% Low / 0.1% Low FPS**, **percentil 99 de frame-time (`ms`)** e **micro-stuttering**.
