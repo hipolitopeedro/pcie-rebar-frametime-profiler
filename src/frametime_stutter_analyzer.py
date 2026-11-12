@@ -13,7 +13,7 @@ PT: Analisa logs CSV de telemetria de frame-time (formato PresentMon / CapFrameX
 import argparse
 import csv
 import math
-from typing import Dict, List
+from typing import List
 
 
 def percentile(sorted_vals: List[float], pct: float) -> float:
@@ -59,12 +59,10 @@ def analyze_frametimes(csv_path: str) -> None:
     fps_1pct_low = 1000.0 / p99_ft_ms
     fps_0_1pct_low = 1000.0 / p99_9_ft_ms
 
-    # Frame-to-frame pacing jitter (mean absolute difference between consecutive frames)
     deltas = [abs(frame_times_ms[i] - frame_times_ms[i - 1]) for i in range(1, n)]
     avg_jitter_ms = sum(deltas) / len(deltas) if deltas else 0.0
     stutter_spikes = sum(1 for d in deltas if d > (avg_ft_ms * 0.85))
 
-    # Bottleneck classification: GPU-bound if GPU active >= 92% of frame time
     gpu_bound_frames = sum(
         1 for ft, gb in zip(frame_times_ms, gpu_busy_ms) if (gb / ft) >= 0.92
     )
@@ -72,8 +70,7 @@ def analyze_frametimes(csv_path: str) -> None:
     cpu_bound_pct = 100.0 - gpu_bound_pct
 
     print("=" * 86)
-    print("  GPU FRAME-TIME CONSISTENCY, 1% / 0.1% LOWS & MICRO-STUTTER PROFILER")
-    print("  Testbed Reference: AMD Ryzen 7 5700X + Radeon RX 6750 XT 12GB (SAM / ReBAR ON)")
+    print("  AMD RYZEN & RADEON FRAME-TIME CONSISTENCY, 1% / 0.1% LOWS & STUTTER PROFILER")
     print("=" * 86)
     print(f"  Total Frames Analyzed     : {n}")
     print(f"  Average Frame Rate        : {avg_fps:>6.1f} FPS ({avg_ft_ms:.2f} ms/frame)")
@@ -90,7 +87,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="PresentMon / CapFrameX Frame-Time & Stutter Analyzer")
     parser.add_argument(
         "--log",
-        default="data/sample_presentmon_rx6750xt.csv",
+        default="data/sample_presentmon_trace.csv",
         help="Path to frame-time CSV log",
     )
     args = parser.parse_args()
